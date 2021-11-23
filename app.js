@@ -1,13 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const validator = require('validator');
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
-const BadRequestError = require('./errors/BadRequestError');
 const handleError = require('./errors/handleError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -23,14 +21,6 @@ app.use(require('morgan')('dev'));
 
 app.use(express.json());
 
-const method = (value) => {
-  const result = validator.isURL(value);
-  if (result) {
-    return value;
-  }
-  throw new BadRequestError('указанный URL не прошел валидацию');
-};
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -38,6 +28,23 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required().min(8),
+  }),
+}), login);
+
+app.post('/signup', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required().min(8),
+    name: Joi.string().min(2).max(30),
+  }),
+}), createUser);
+
+app.use(auth);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Указанный адрес не существует'));
