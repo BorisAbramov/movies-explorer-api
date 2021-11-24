@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors');
 const usersRouter = require('./routes/users');
@@ -23,7 +25,14 @@ app.use(require('morgan')('dev'));
 
 app.use(express.json());
 
+const limiter = rateLimit({
+  windowMs: 30 * 60 * 1000,
+  max: 200,
+});
+
 app.use(requestLogger);
+app.use(helmet());
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
