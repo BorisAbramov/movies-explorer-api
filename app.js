@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors');
+const usersRouter = require('./routes/users');
+const moviesRouter = require('./routes/movies');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
@@ -45,6 +47,9 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(auth);
+
+app.use(moviesRouter);
+app.use(usersRouter);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Указанный адрес не существует'));
