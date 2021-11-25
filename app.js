@@ -9,9 +9,9 @@ const { SETUP_MONGO, DATABASE } = require('./utils/constans');
 const routes = require('./routes/index');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const NotFoundError = require('./errors/NotFoundError');
 const handleError = require('./errors/handleError');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
