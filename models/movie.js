@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
   country: {
@@ -23,29 +24,17 @@ const userSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    validate: {
-      // eslint-disable-next-line no-useless-escape
-      validator: (v) => /^https?:\/\/(www\.)?[a-z0-9-._~:\/?#[\]@!$&'()*+,;=]*#?/i.test(v),
-      message: 'Указан невалидный формат ссылки',
-    },
+    validate: (image) => validator.isURL(image),
     required: true,
   },
   trailer: {
     type: String,
-    validate: {
-      // eslint-disable-next-line no-useless-escape
-      validator: (v) => /^https?:\/\/(www\.)?[a-z0-9-._~:\/?#[\]@!$&'()*+,;=]*#?/i.test(v),
-      message: 'Указан невалидный формат ссылки',
-    },
+    validate: (trailer) => validator.isURL(trailer),
     required: true,
   },
   thumbnail: {
     type: String,
-    validate: {
-      // eslint-disable-next-line no-useless-escape
-      validator: (v) => /^https?:\/\/(www\.)?[a-z0-9-._~:\/?#[\]@!$&'()*+,;=]*#?/i.test(v),
-      message: 'Указан невалидный формат ссылки',
-    },
+    validate: (thumbnail) => validator.isURL(thumbnail),
     required: true,
   },
   owner: {
