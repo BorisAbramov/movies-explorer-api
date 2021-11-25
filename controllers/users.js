@@ -46,7 +46,7 @@ const createUser = async (req, res, next) => {
         ),
       );
     }
-    if (err.name === 'MongoServerError' && err.code === 11000) {
+    if (err.code === 11000) {
       next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
     }
     next(err);
@@ -87,7 +87,7 @@ const updateUser = async (req, res, next) => {
       },
     ));
   } catch (err) {
-    if (err.name === 'MongoServerError' && err.code === 11000) {
+    if (err.code === 11000) {
       next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
     }
     next(err);
