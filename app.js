@@ -5,8 +5,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors');
-const usersRouter = require('./routes/users');
-const moviesRouter = require('./routes/movies');
+const { SETUP_MONGO, DATABASE } = require('./utils/constans');
+const routes = require('./routes/index');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
@@ -17,9 +17,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
-  useNewUrlParser: true,
-});
+mongoose.connect(DATABASE, SETUP_MONGO);
 
 app.use(require('morgan')('dev'));
 
@@ -57,8 +55,7 @@ app.post('/signup', celebrate({
 
 app.use(auth);
 
-app.use(moviesRouter);
-app.use(usersRouter);
+app.use(routes);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Указанный адрес не существует'));

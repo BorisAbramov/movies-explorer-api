@@ -87,8 +87,8 @@ const updateUser = async (req, res, next) => {
       },
     ));
   } catch (err) {
-    if (err.name === 'CastError') {
-      next(new NotFoundError('Пользователь с указанным id не найден'));
+    if (err.name === 'MongoServerError' && err.code === 11000) {
+      next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
     }
     next(err);
   }

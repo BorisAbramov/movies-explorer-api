@@ -29,9 +29,11 @@ router.post('/movies', celebrate({
     thumbnail: Joi.string().required().custom(method),
     nameRU: Joi.string().required().min(2).max(30),
     nameEN: Joi.string().required().min(2).max(30),
+    movieId: Joi.number().required(),
+    owner: Joi.string().hex().length(24),
   }),
 }), createMovie);
-router.delete('/movies/movieId', celebrate({
+router.delete('/movies/:movieId', celebrate({
   params: Joi.object().keys({
     movieId: Joi.string().hex().length(24),
   }),
