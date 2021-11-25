@@ -22,7 +22,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
-    "ratelimit": "0.0.4",
     "validator": "^13.7.0",
     "winston": "^3.3.3"
   },
