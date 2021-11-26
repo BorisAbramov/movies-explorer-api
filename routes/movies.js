@@ -30,7 +30,6 @@ router.post('/movies', celebrate({
     nameRU: Joi.string().required().min(2).max(30),
     nameEN: Joi.string().required().min(2).max(30),
     movieId: Joi.number().required(),
-    owner: Joi.string().hex().length(24),
   }),
 }), createMovie);
 router.delete('/movies/:movieId', celebrate({
