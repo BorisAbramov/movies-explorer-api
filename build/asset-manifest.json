@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7ff305f8.chunk.css",
+    "main.js": "/static/js/main.505a06ec.chunk.js",
+    "main.js.map": "/static/js/main.505a06ec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ff5b8ea4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ff5b8ea4.js.map",
+    "static/js/2.88521122.chunk.js": "/static/js/2.88521122.chunk.js",
+    "static/js/2.88521122.chunk.js.map": "/static/js/2.88521122.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.7ff305f8.chunk.css.map": "/static/css/main.7ff305f8.chunk.css.map",
+    "static/js/2.88521122.chunk.js.LICENSE.txt": "/static/js/2.88521122.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Inter-Regular.e148c4a1.woff",
+    "static/media/about-me-photo.30387d3d.JPG": "/static/media/about-me-photo.30387d3d.JPG",
+    "static/media/filterCheckbox.css": "/static/media/movie-checkbox-turn-on.8786fd0e.svg",
+    "static/media/moviesCard.css": "/static/media/movies-card-like.119eab70.svg",
+    "static/media/navigation.css": "/static/media/navigation-link-main.850e5b6d.svg",
+    "static/media/Popup.css": "/static/media/popup-close.44bb1e48.svg",
+    "static/media/portfolio.css": "/static/media/portfolio-image-link.78c4c42a.svg",
+    "static/media/promo.css": "/static/media/promo-logo2.d12e7f84.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ff5b8ea4.js",
+    "static/js/2.88521122.chunk.js",
+    "static/css/main.7ff305f8.chunk.css",
+    "static/js/main.505a06ec.chunk.js"
+  ]
+}
