@@ -87,6 +87,8 @@ const updateUser = async (req, res, next) => {
       },
     ));
   } catch (err) {
+	  console.log(err);
+	  console.log(JSON.stringify(req.body, null, " "));
     if (err.code === 11000) {
       next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
     }
